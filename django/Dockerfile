@@ -7,6 +7,9 @@ FROM python:3.12-slim-bookworm
 # User anlegen
 RUN addgroup --system app && adduser --system --ingroup app app
 
+# behebt fehler mit nutzter ohne Home 
+ENV HOME=/tmp
+
 # erstellen eines App Ordners 
 RUN mkdir app
 WORKDIR /app
@@ -23,4 +26,5 @@ USER app
 # Port für Gunicorn
 EXPOSE 8000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "mysite.wsgi:application"]
+# Anwendung starten
+CMD ["node", "app.js"]
