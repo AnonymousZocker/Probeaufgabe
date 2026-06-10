@@ -23,4 +23,4 @@ USER app
 # Port für Gunicorn
 EXPOSE 8000
 
-CMD ["gunicorn", "mysite.wsgi"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "mysite.wsgi:application"]
