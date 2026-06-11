@@ -12,7 +12,7 @@ WORKDIR /app
 # Dateien kopieren
 COPY --chown=app:app project-nodejs-express-webapp/ .
 
-# Abhängigkeiten installieren
+# Abhängigkeiten installieren mit clean install 
 RUN npm ci --omit=dev
 
 # Jetzt erst auf den unprivilegierten User wechseln
@@ -21,5 +21,5 @@ USER app
 #Port für express
 EXPOSE 3000
 
-# Anwendung starten
+# Anwendung starten prodiktions nahr
 CMD ["node", "app.js"]

@@ -1,7 +1,9 @@
 version: '3.8'
 services:
   python:
-    build: ./django
+    # build für localen image bau 
+    # build: ./django
+    image: anonymouszocker/probeaufgabe-django
     volumes:
       - .:/app
     environment:
@@ -11,7 +13,9 @@ services:
       - proxy-net
   
   nodejs:
-    build: ./nodejs
+    image: anonymouszocker/probeaufgabe-nodejs
+    # build für localen image bau 
+    # build: ./nodejs
     networks:
       - proxy-net
 
