@@ -24,7 +24,7 @@ jobs:
           cd nodejs
           git clone https://github.com/microsoft/project-nodejs-express-webapp.git
       - name: docker build nodjs
-        run: docker build . -t  ${{ secrets.DOCKER_HUB_USERNAME }}/probeaufgabe-nodejs:latest
+        run: docker build ./nodejs/ -t  ${{ secrets.DOCKER_HUB_USERNAME }}/probeaufgabe-nodejs:latest
         
       - name: push image nodejs
         run: |
