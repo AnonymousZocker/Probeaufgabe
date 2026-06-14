@@ -4,8 +4,10 @@ services:
     # build für localen image bau 
     # build: ./django
     image: anonymouszocker/probeaufgabe-django
+    restart: always
     volumes:
-      - .:/app
+    # ro = read only, damit die nginx.conf nicht von außen verändert werden kann
+      - .:/app:ro
     environment:
       DJANGO_ALLOWED_HOSTS: "*"
     command: gunicorn --bind 0.0.0.0:8000 --chdir /app/django/djangotutorial mysite.wsgi:application
@@ -16,15 +18,19 @@ services:
     image: anonymouszocker/probeaufgabe-nodejs
     # build für localen image bau 
     # build: ./nodejs
+    restart: always
     networks:
       - proxy-net
 
   nginx:
+    # version pinning vs latest:
     image: nginx:latest
+    restart: always
     ports:
       - "8443:8443"
       - "8080:8080"
     volumes:
+    # ro = read only, damit die nginx.conf nicht von außen verändert werden kann
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - ./ssl:/etc/nginx/ssl:ro
     depends_on:

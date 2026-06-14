@@ -25,6 +25,3 @@ USER app
 
 # Port für Gunicorn
 EXPOSE 8000
-
-# Anwendung starten
-CMD ["node", "app.js"]
